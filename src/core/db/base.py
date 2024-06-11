@@ -9,7 +9,7 @@ from src.util.constants import MYSQL_INFO
 
 conn_info = MYSQL_INFO.get(os.getenv("env"))
 pool = pooling.MySQLConnectionPool(
-    pool_name="crawler_product_pool", pool_size=32, pool_reset_session=True, database="products", **conn_info
+    pool_name="crawler_pos_pool", pool_size=32, pool_reset_session=True, database="pos", **conn_info
 )
 
 
