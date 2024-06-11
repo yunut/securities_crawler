@@ -3,13 +3,6 @@ import random
 from decimal import Decimal
 
 
-def get_random_str(size: int = 10):
-    ret = []
-    for i in range(0, size):
-        ret.append(random.choice("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"))
-    return "delete_" + "".join(ret)
-
-
 indent = "   "
 
 
