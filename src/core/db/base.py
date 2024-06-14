@@ -2,6 +2,7 @@ import json
 import os
 from datetime import datetime
 from typing import List
+from dotenv import load_dotenv
 
 # from cachetools.func import ttl_cache
 from mysql.connector import pooling
@@ -9,8 +10,9 @@ from mysql.connector import pooling
 from src.entities.pos_schedule import PosSchedule
 from src.util.constants import MYSQL_INFO
 
-# conn_info = MYSQL_INFO.get(os.getenv("env"))
-conn_info = MYSQL_INFO.get("local")
+## 임시 .env 설정
+load_dotenv()
+conn_info = MYSQL_INFO.get(os.getenv("ENV"))
 pool = pooling.MySQLConnectionPool(
     pool_name="crawler_pos_pool", pool_size=32, pool_reset_session=True, database="securities_info", **conn_info
 )
