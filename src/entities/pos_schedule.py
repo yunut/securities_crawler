@@ -1,6 +1,6 @@
 import inspect
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import date
 from decimal import Decimal
 from typing import Optional
 
@@ -11,8 +11,8 @@ from src.util.common import print_with_newline
 class PosSchedule:
     id: str
     pos_name: str
-    pos_start_date: datetime
-    pos_end_date: datetime
+    pos_start_date: date
+    pos_end_date: date
     pos_confirmed_price: Optional[int]
     pos_desired_min_price: int
     pos_desired_max_price: int
