@@ -1,0 +1,29 @@
+services:
+  # MySQL 서비스
+  database-mysql:
+    image: mysql:5.7.34
+    ports:
+      - 3306:3306
+    volumes:
+      - ./db/mysql/data:/var/lib/mysql
+      - ./src/test/resources/db/init:/docker-entrypoint-initdb.d
+    command:
+      - '--character-set-server=utf8mb4'
+      - '--collation-server=utf8mb4_unicode_ci'
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_DATABASE: securities_info
+    platform: linux/amd64
+    restart: always
+
+  # FastAPI API 서비스
+  api:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: securities_crawler
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: mysql://root:root@db:3306/securities_info
